@@ -1,0 +1,3 @@
+import {posts} from '../../../lib/data'; import SiteShell from '../../../components/SiteShell'; import {notFound} from 'next/navigation'; import PostDetailClient from '../../../components/PostDetailClient';
+export function generateStaticParams(){return posts.map(p=>({slug:p.slug}))} export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=posts.find(x=>x.slug===slug);return p?{title:p.title+' | Solvexart',description:p.excerpt}:{} }
+export default async function Post({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=posts.find(x=>x.slug===slug);if(!p)return notFound();return <SiteShell><PostDetailClient initial={p}/></SiteShell>}

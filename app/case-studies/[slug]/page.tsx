@@ -1,0 +1,3 @@
+import {cases} from '../../../lib/data'; import SiteShell from '../../../components/SiteShell'; import {notFound} from 'next/navigation'; import CaseDetailClient from '../../../components/CaseDetailClient';
+export function generateStaticParams(){return cases.map(c=>({slug:c.slug}))} export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const c=cases.find(x=>x.slug===slug);return c?{title:c.seoTitle,description:c.seoDescription}:{} }
+export default async function Case({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const c=cases.find(x=>x.slug===slug);if(!c)return notFound();return <SiteShell><CaseDetailClient initial={c}/></SiteShell>}
