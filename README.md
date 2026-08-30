@@ -1,2 +1,3 @@
-# solvexart-optimiezly-inspired-final
-solvexart-optimiezly-inspired-final
+# Solvexart Digital Marketing Agency
+
+A modern Next.js website for Solvexart.
